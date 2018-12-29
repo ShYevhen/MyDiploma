@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import net.ukr.shyevhen.model.Basket;
-import net.ukr.shyevhen.model.Book;
 import net.ukr.shyevhen.repository.BasketRepository;
 
 @Service
@@ -17,15 +16,23 @@ public class BasketServiceImp implements BasketService {
 	private BasketRepository basketRepository;
 
 	@Override
-	@Transactional(readOnly=true)
-	public List<Book> findBySession(String session) {
-		return basketRepository.findBySession(session);
+	@Transactional
+	public Basket getBySession(String session) {
+		List<Long> ids = basketRepository.getIdBySession(session);
+		if (ids.size() == 1) {
+			return basketRepository.getOne(ids.get(0));
+		} else if (ids.size() > 1) {
+			for (Long id : ids) {
+				basketRepository.deleteById(id);
+			}
+		}
+		return null;
 	}
 
 	@Override
-	@Transactional(readOnly=true)
-	public int countBySession(String session) {
-		return basketRepository.countBySession(session);
+	@Transactional(readOnly = true)
+	public int countByBookId(String session) {
+		return basketRepository.countByBookId(session);
 	}
 
 	@Override
@@ -39,17 +46,20 @@ public class BasketServiceImp implements BasketService {
 	public void deleteById(long id) {
 		basketRepository.deleteById(id);
 	}
-	
-	@Override
-	@Transactional
-	public void deleteBySession(String session) {
-		basketRepository.deleteBySession(session);
-	}
 
 	@Override
 	@Transactional
 	public void deleteByDate(Date day) {
 		basketRepository.deleteByDate(day);
+	}
+
+	@Override
+	@Transactional
+	public void deleteBySession(String session) {
+		List<Long> ids = basketRepository.getIdBySession(session);
+		for (Long id : ids) {
+			basketRepository.deleteById(id);
+		}
 	}
 
 }

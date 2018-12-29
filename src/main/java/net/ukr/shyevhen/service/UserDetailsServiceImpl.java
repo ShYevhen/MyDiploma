@@ -15,18 +15,19 @@ import org.springframework.stereotype.Service;
 import net.ukr.shyevhen.model.ShopUser;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService{
+public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	private UserService userService;
+
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		ShopUser user = userService.getByUserLogin(login);
-		if(user==null) {
+		if (user == null) {
 			throw new UsernameNotFoundException(login + " not found");
 		}
 		Set<GrantedAuthority> roles = new HashSet<>();
 		roles.add(new SimpleGrantedAuthority(user.getRole().toString()));
-		return new User(user.getLogin(),user.getPassword(),roles);
+		return new User(user.getLogin(), user.getPassword(), roles);
 	}
 
 }

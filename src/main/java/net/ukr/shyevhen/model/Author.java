@@ -1,5 +1,6 @@
 package net.ukr.shyevhen.model;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,26 +9,26 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Authors")
+@Table(name = "Authors")
 public class Author {
-	
+
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	private String name;
 	private String surname;
 	private Date birthday;
+	@Lob
 	private String biography;
-	private byte[] image;
-	
-	private static SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+	private String image;
 
-	@ManyToMany(mappedBy= "authors", cascade= {CascadeType.MERGE,CascadeType.REFRESH}, fetch=FetchType.EAGER)
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+	private static SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+
+	@ManyToMany(mappedBy = "authors", cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@OrderBy("bookSeries ASC, bookInSeries ASC")
 	private List<Book> books = new ArrayList<>();
-
-	
 
 	public Author(String name, String surname, Date birthday, String biography) {
 		super();
@@ -36,10 +37,10 @@ public class Author {
 		this.birthday = birthday;
 		this.biography = biography;
 	}
-	
+
 	public Author(long id, String name, String surname) {
 		super();
-		this.id=id;
+		this.id = id;
 		this.name = name;
 		this.surname = surname;
 	}
@@ -71,13 +72,27 @@ public class Author {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	
-	public Date getBirthday() {
+
+	public String getBirthday() {
+		if (birthday == null)
+			return null;
+		return sdf.format(birthday);
+	}
+
+	public Date getBirthdayDate() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setBirthday(String birthday) {
+		try {
+			this.birthday = sdf.parse(birthday);
+		} catch (ParseException e) {
+			try {
+				this.birthday = sdf2.parse(birthday);
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 
 	public String getBiography() {
@@ -88,11 +103,11 @@ public class Author {
 		this.biography = biography;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
@@ -103,21 +118,54 @@ public class Author {
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
-	
+
 	public void addBook(Book book) {
-		if(!books.contains(book)) {
+		if (!books.contains(book)) {
 			books.add(book);
 		}
-		if(!book.getAuthors().contains(this)) {
+		if (!book.getAuthors().contains(this)) {
 			book.addAuthor(this);
 		}
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Author other = (Author) obj;
+		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (surname == null) {
+			if (other.surname != null)
+				return false;
+		} else if (!surname.equals(other.surname))
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
-		return "Author [id=" + id + ", name=" + name + ", surname=" + surname + ", birthday=" + sdf.format(birthday) + ", biography=" 
-	+ biography + ", image=" + (image!=null) +/* ", books=" + books +*/ "]";
+		return "Author [id=" + id + ", name=" + name + ", surname=" + surname + ", birthday=" + sdf.format(birthday)
+				+ ", biography=" + biography + ", image=" + (image != null) + /* ", books=" + books + */ "]";
 	}
-	
-	
+
 }

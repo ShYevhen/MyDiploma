@@ -8,7 +8,7 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-public class WebInitializer implements WebApplicationInitializer{
+public class WebInitializer implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext servCon) throws ServletException {
@@ -17,7 +17,7 @@ public class WebInitializer implements WebApplicationInitializer{
 		ServletRegistration.Dynamic servlet = servCon.addServlet("dispatcher", new DispatcherServlet(context));
 		servlet.addMapping("/");
 		servlet.setLoadOnStartup(1);
-		
+
 	}
-	
+
 }

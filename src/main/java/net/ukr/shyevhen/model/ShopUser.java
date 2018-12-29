@@ -6,17 +6,13 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 @Entity
-@Table(name="Users")
+@Table(name = "Users")
 public class ShopUser {
-
 
 	@Id
 	@GeneratedValue
 	private long id;
-//	@UniqueElements
 	private String login;
 	private String password;
 	private String name;
@@ -24,14 +20,15 @@ public class ShopUser {
 	private String eMail;
 	private String phone;
 	private String address;
-	private byte[] image;
+	private String image;
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
-	@ManyToMany(cascade= {CascadeType.MERGE,CascadeType.REFRESH}, fetch = FetchType.LAZY)
-	@JoinTable(name = "users_books", joinColumns = {@JoinColumn(name="user_id")}, inverseJoinColumns= {@JoinColumn(name="book_id")})
+
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@JoinTable(name = "users_books", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "book_id") })
 	private List<Book> favorite = new ArrayList<>();
-	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Order> orders = new ArrayList<>();
 
 	public ShopUser(String login, String password, String name, String surname, String eMail, String phone, Role role) {
@@ -44,7 +41,7 @@ public class ShopUser {
 		this.phone = phone;
 		this.role = role;
 	}
-	
+
 	public ShopUser(long id, String login, String name, String surname, Role role) {
 		super();
 		this.id = id;
@@ -53,19 +50,47 @@ public class ShopUser {
 		this.surname = surname;
 		this.role = role;
 	}
-	
+
+	public ShopUser(long id, String login, String password, String name, String surname, String eMail, String phone,
+			String image) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.password = password;
+		this.name = name;
+		this.surname = surname;
+		this.eMail = eMail;
+		this.phone = phone;
+		this.image = image;
+	}
+
+	public ShopUser(long id, String login, String password, Role role) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.password = password;
+		this.role = role;
+	}
+
+	public ShopUser(long id, String login, String password) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.password = password;
+	}
+
 	public ShopUser(long id, Collection<Book> favorite) {
 		super();
 		this.id = id;
-		this.favorite = (List<Book>)favorite;
+		this.favorite = (List<Book>) favorite;
 	}
-	
+
 	public ShopUser(long id, Role role) {
 		super();
 		this.id = id;
 		this.role = role;
 	}
-	
+
 	public ShopUser(long id) {
 		super();
 		this.id = id;
@@ -139,11 +164,11 @@ public class ShopUser {
 		this.address = address;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
@@ -170,23 +195,30 @@ public class ShopUser {
 	public void setOrdes(List<Order> ordes) {
 		this.orders = ordes;
 	}
-	
+
 	public void addInFavorite(Book book) {
-		if(!favorite.contains(book)) {
+		if (!favorite.contains(book)) {
 			favorite.add(book);
 		}
-		if(!book.getUserFavotite().contains(this)) {
+		if (!book.getUserFavotite().contains(this)) {
 			book.addUserFavorite(this);
 		}
 	}
 
-	
+	public void deleteFromFavorite(long bookId) {
+		for (Book book : this.favorite) {
+			if (book.getId() == bookId) {
+				this.favorite.remove(book);
+				break;
+			}
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", login=" + login + ", password=" + password + ", name=" + name + ", surname="
 				+ surname + ", eMail=" + eMail + ", phone=" + phone + ", address=" + address + ", image="
-				+ (image!=null) + ", role=" + role + "]";
+				+ (image != null) + ", role=" + role + "]";
 	}
-	
-	
+
 }

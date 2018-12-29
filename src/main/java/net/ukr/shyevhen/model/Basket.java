@@ -1,6 +1,8 @@
 package net.ukr.shyevhen.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -11,26 +13,43 @@ public class Basket {
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	private String session;
 	private Date date;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Book book;
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	private List<Book> books = new ArrayList<>();
 
-	public Basket(String session, Book book) {
-		super();
-		this.session = session;
-		this.book = book;
-		this.date = new Date();
-	}
-
-	public Basket(long id, String session, Book book, Date date) {
+	public Basket(long id, String session, Date date, List<Book> books) {
 		super();
 		this.id = id;
 		this.session = session;
-		this.book = book;
 		this.date = date;
+		this.books = books;
+	}
+
+	public Basket(long id, String session, List<Book> books) {
+		super();
+		this.id = id;
+		this.session = session;
+		this.books = books;
+	}
+
+	public Basket(long id, List<Book> books) {
+		super();
+		this.id = id;
+		this.books = books;
+	}
+
+	public Basket(List<Book> books) {
+		super();
+		this.books = books;
+	}
+
+	public Basket(String session) {
+		super();
+		this.session = session;
+		this.date = new Date();
 	}
 
 	public Basket() {
@@ -49,7 +68,7 @@ public class Basket {
 		return session;
 	}
 
-	public void setSessionId(String session) {
+	public void setSession(String session) {
 		this.session = session;
 	}
 
@@ -61,12 +80,22 @@ public class Basket {
 		this.date = date;
 	}
 
-	public Book getBook() {
-		return book;
+	public List<Book> getBooks() {
+		return books;
 	}
 
-	public void setBook(Book book) {
-		this.book = book;
-		this.book.addBasket(this);
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
+
+	public void addBook(Book book) {
+		this.books.add(book);
+	}
+
+	@Override
+	public String toString() {
+		return "Basket [id=" + id + ", session=" + session + ", date=" + date + ", books=" + books + "]";
+	}
+	
+	
 }

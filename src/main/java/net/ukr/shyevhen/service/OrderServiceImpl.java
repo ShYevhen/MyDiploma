@@ -1,49 +1,78 @@
 package net.ukr.shyevhen.service;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.ukr.shyevhen.model.Book;
 import net.ukr.shyevhen.model.Order;
 import net.ukr.shyevhen.repository.OrderRepository;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-	
+
 	@Autowired
 	private OrderRepository orderRepository;
-	
+
 	@Override
-	@Transactional(readOnly=true)
-	public boolean existOrder(String name, String surname, Date createDate, int booksCount, BigDecimal totalPrice) {
-		return orderRepository.existOrder(name, surname, createDate, booksCount, totalPrice);
+	@Transactional(readOnly = true)
+	public boolean existOrder(String name, String surname, BigDecimal deliveryPrice, BigDecimal totalPrice) {
+		return orderRepository.existOrder(name, surname, deliveryPrice, totalPrice);
 	}
 
 	@Override
-	@Transactional(readOnly=true)
-	public List<Order> findByUserId(long id) {
-		return orderRepository.findByUserId(id);
+	@Transactional(readOnly = true)
+	public boolean existOrder(long id) {
+		return orderRepository.existOrder(id);
 	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
+	public List<Order> findByUserId(long id, Pageable pageable) {
+		return orderRepository.findByUserId(id, pageable);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Order> findByUserLogin(String login, Pageable pageable) {
+		return orderRepository.findByUserLogin(login, pageable);
+	}
+
+	@Override
 	public List<Order> findByUserLogin(String login) {
 		return orderRepository.findByUserLogin(login);
 	}
-	
+
 	@Override
-	@Transactional(readOnly=true)
-	public List<Order> findByStatusOrderByCreateDate(){
-		return orderRepository.findByStatusOrderByCreateDate();
+	@Transactional(readOnly = true)
+	public List<Order> findByStatusOrderByCreateDate(Pageable pageable) {
+		List<Order> orders = orderRepository.findAllOrderByCreateDateAndStatus(pageable);
+		return orders;
 	}
-	
+
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
+	public List<Order> findByOrderId(String login, long id, long exept) {
+		return orderRepository.findByOrderId(login, id, exept);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Order> findByOrderId(long id, long exept) {
+		return orderRepository.findByOrderId(id, exept);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Order getOrder(String login, long id) {
+		return orderRepository.getById(login, id);
+	}
+
+	@Override
+	@Transactional
 	public Order getOrder(long id) {
 		return orderRepository.getById(id);
 	}
@@ -63,10 +92,17 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	@Transactional
 	public void deleteOrder(long id) {
-//		orderRepository.deleteById(id);
+		orderRepository.deleteById(id);
 	}
 
-	
-	
-	
+	@Override
+	public int countOrders() {
+		return orderRepository.countOrders();
+	}
+
+	@Override
+	public int countOrders(String login) {
+		return orderRepository.countOrdersByUser(login);
+	}
+
 }

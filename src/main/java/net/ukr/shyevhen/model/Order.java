@@ -8,7 +8,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Orders")
+@Table(name = "Orders")
 public class Order {
 
 	@Id
@@ -25,11 +25,11 @@ public class Order {
 	private BigDecimal deliveryPrice;
 	private BigDecimal totalPrice;
 	private int booksCount;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	private ShopUser user;
-	
-	@ManyToMany(cascade= {CascadeType.MERGE,CascadeType.REFRESH}, fetch=FetchType.EAGER)
+
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	private List<Book> books = new ArrayList<>();
 
 	public Order(String name, String surname, String phone, String address, BigDecimal deliveryPrice,
@@ -45,8 +45,6 @@ public class Order {
 		this.createDate = new Date();
 		this.booksCount = books.size();
 	}
-	
-	
 
 	public Order(String name, String surname, String phone, String address, BigDecimal deliveryPrice,
 			BigDecimal totalPrice, ShopUser user, List<Book> books) {
@@ -69,6 +67,12 @@ public class Order {
 		this.createDate = createDate;
 		this.booksCount = booksCount;
 		this.totalPrice = totalPrice;
+		this.status = status;
+	}
+
+	public Order(long id, boolean status) {
+		super();
+		this.id = id;
 		this.status = status;
 	}
 
@@ -163,7 +167,6 @@ public class Order {
 	public void setUser(ShopUser user) {
 		this.user = user;
 	}
-	
 
 	public List<Book> getBooks() {
 		return books;
@@ -173,23 +176,20 @@ public class Order {
 		this.books = books;
 		this.booksCount = books.size();
 	}
-	
+
 	public int getBooksCount() {
 		return booksCount;
 	}
-
-
 
 	public void setBooksCount(int booksCount) {
 		this.booksCount = booksCount;
 	}
 
-	
 	public void addBook(Book book) {
-		if(!books.contains(book)) {
+		if (!books.contains(book)) {
 			books.add(book);
 		}
-		if(!book.getOrders().contains(this)) {
+		if (!book.getOrders().contains(this)) {
 			book.addOrder(this);
 		}
 	}
@@ -198,7 +198,7 @@ public class Order {
 	public String toString() {
 		return "Order [id=" + id + ", name=" + name + ", surname=" + surname + ", phone=" + phone + ", address="
 				+ address + ", createDate=" + createDate + ", deliveryDate=" + deliveryDate + ", status=" + status
-				+ ", deliveryPrice=" + deliveryPrice + ", totalPrice=" + totalPrice +", booksCount=" + booksCount + 
-				", " + user + ", " + books + "]";
+				+ ", deliveryPrice=" + deliveryPrice + ", totalPrice=" + totalPrice + ", booksCount=" + booksCount
+				+ ", " + user + ", " + books + "]";
 	}
 }

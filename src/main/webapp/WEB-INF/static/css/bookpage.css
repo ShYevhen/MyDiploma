@@ -1,0 +1,386 @@
+#changeBtn, #inFavorite, #inBasket, #changeBtn, #addBtn {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7d5d3b), color-stop(1, #634b30));
+	background:-moz-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:-webkit-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:-o-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:-ms-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
+	background:linear-gradient(to bottom, #7d5d3b 5%, #634b30 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d5d3b', endColorstr='#634b30',GradientType=0);
+	background-color:#7d5d3b;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #54381e;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:2px 12px;
+	text-decoration:none;
+}
+
+#changeBtn:hover, #inFavorite:hover, #inBasket:hover, #changeBtn:hover, #addBtn:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #634b30), color-stop(1, #7d5d3b));
+	background:-moz-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+	background:-webkit-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+	background:-o-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+	background:-ms-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
+	background:linear-gradient(to bottom, #634b30 5%, #7d5d3b 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#634b30', endColorstr='#7d5d3b',GradientType=0);
+	background-color:#634b30;
+}
+
+#changeBtn:active, #inFavorite:active, #inBasket:active, #changeBtn:active, #addBtn:active {
+	position:relative;
+	top:1px;
+}
+
+#picture, #nameInp, #bookSeriesInp, #bookInSeriesInp, #imprintDateInp, #pagesInp, #priceInp, #availabilityInp, #descriptionText,
+#bName, #bSeries, #bInSeries, #bImprintDate, #bPages, #bPrice, #bAvailability, #bDescription {
+	background-color: white; 
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:2px solid #7d5d3b;
+	display:inline-block;
+	cursor:pointer;
+	color:#493224;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:2px 12px;
+	text-decoration:none;
+}
+
+#picture:hover, #nameInp:hover, #bookSeriesInp:hover, #bookInSeriesInp:hover, #imprintDateInp:hover, #pagesInp:hover, #priceInp:hover, 
+#availabilityInp:hover, #descriptionText:hover, #bName:hover, #bSeries:hover, #bInSeries:hover, #bImprintDate:hover, #bPages:hover, 
+#bPrice:hover, #bAvailability:hover, #bDescription:hover {
+	background-color:#cfcdcd;
+}
+
+#picture:active, #nameInp:active, #bookSeriesInp:active, #bookInSeriesInp:active, #imprintDateInp:active, #pagesInp:active, #priceInp:active, 
+#availabilityInp:active, #descriptionText:active, #bName:active, #bSeries:active, #bInSeries:active, #bImprintDate:active, #bPages:active, 
+#bPrice:active, #bAvailability:active, #bDescription:active {
+	position:relative;
+	top:1px;
+}
+
+.navGenre {
+	float: left;
+	text-align: center;
+	width: 100%;
+}
+
+.navGenre ul {
+ margin: 10 0 10px 0;
+ padding: 0;
+ font-size: 0;
+ list-style: none;
+ cursor: default;
+ border-radius: 3px;
+ font-weight: 700;
+}
+ 
+.navGenre ul li {
+ display: inline-block;
+ font-size: 15px;
+ color: white;
+ height: 30px;
+ line-height: 30px;
+ display: inline-block;
+ padding: 0 20px;
+ -webkit-transform: skew(-15deg);
+ -moz-transform: skew(-15deg);
+ transform: skew(-15deg);
+ background-image: -webkit-linear-gradient(top, #e49601, #964f03);
+ background-image: linear-gradient(to bottom, #e49601, #964f03);
+ background-repeat: repeat-x;
+ margin-right: -1px;
+ text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.8);
+}
+ 
+.navGenre ul li a {
+ display: block;
+ font-style: normal;
+ pointer-effects: none;
+ -webkit-transform: skew(15deg);
+ -moz-transform: skew(15deg);
+ transform: skew(15deg);
+}
+ 
+.navGenre ul li:first-child:before, .navGenre ul li:last-child:after {
+ content: '';
+ position: absolute;
+ display: block;
+ top: 0px;
+ left: -8px;
+ width: 15px;
+ height: 30px;
+ -webkit-transform: skew(15deg);
+ border-radius: 3px 0 0 3px;
+ background-color: #ed9c01;
+ background-image: -webkit-linear-gradient(top, #e49601, #964f03);
+ background-image: linear-gradient(to bottom, #e49601, #964f03);
+ background-repeat: repeat-x;
+}
+ 
+.navGenre ul li:last-child:after {
+ left: auto;
+ right: -8px;
+ border-radius: 0 3px 3px 0;
+}
+ 
+.navGenre ul li:hover {
+ background-image: -webkit-linear-gradient(top, #8e5a00, #753d02);
+ background-image: linear-gradient(to bottom, #8e5a00, #753d02);
+ background-repeat: repeat-x;
+ color: black;
+ text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+ 
+.navGenre ul li:first-child:hover:before,
+.navGenre ul li:last-child:hover:after {
+ background-image: -webkit-linear-gradient(top, #8e5a00, #753d02);
+ background-image: linear-gradient(to bottom, #8e5a00, #753d02);
+ background-repeat: repeat-x;
+}
+ 
+.navGenre ul li:first-child a {
+ margin-left: -5px;
+}
+ 
+.navGenre ul li:last-child a {
+ margin-right: -5px;
+}
+
+.data{
+	margin: 10px 10% 20px 10%;
+	background-color: white;
+
+	margin-bottom: 10px;
+	border-radius: 5px;
+	box-shadow: 2px -2px 5px 0 rgba(0,0,0,.1),
+	     -2px -2px 5px 0 rgba(0,0,0,.1),
+	    2px 2px 5px 0 rgba(0,0,0,.1),
+	    -2px 2px 5px 0 rgba(0,0,0,.1);
+	font-size: 18px;
+	letter-spacing: 2px;
+	transition: 0.3s all linear;
+	height: auto;
+	min-height: 380px;
+	float: none;
+	font-family: "Trebuchet MS", "Lucida Sans";
+	color: #493224;
+}
+.authorLink{
+	font-size: 18px;
+	letter-spacing: 2px;
+	font-family: "Trebuchet MS", "Lucida Sans";
+	color: #493224;
+}
+
+.theBook{
+	padding: 10px 10px;
+}
+
+.image {
+	margin: 10px;
+	float: left;
+	overflow: hidden;
+	width: 220px;
+	height: 370px;
+	
+}
+
+.image img{
+	overflow: hidden;
+	height: 340px;
+}
+
+.description {
+	margin: 10px;
+}
+
+#pictureP {
+	position: absolute;
+	margin-top: 320px;
+
+}
+
+#picture {
+	width: 220px;
+}
+
+#nameP {
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+#authorDiv {
+	margin-left: 300px;
+	margin-top: -17px;
+	margin-bottom: 10px;
+	width: calc(100% - 300px;);
+}
+
+#authorDiv a{
+	line-height: 20px;
+	margin-left: 10px;
+	white-space: nowrap;
+}
+
+#authorSel {
+	margin-top: -8px;
+	margin-bottom: 8px;
+}
+
+#authors {
+	width: 310px;
+}
+
+#genreP {
+	width: 100%;
+	min-height: 25px;
+	margin-bottom: 8px;
+}
+
+#genreDiv{
+	float: left;
+	margin: 4px 15px 4px 0;
+}
+
+#genreSel {
+	width: 100%;
+}
+
+#genreSel select{
+	width: 310px;
+}
+
+#bookSeriesP, #bookInSeriesP, #imprintDateP, #pagesP, #priceP, #availabilityP {
+	margin-bottom: 8px;
+}
+
+#bookSeriesInp, #bookInSeriesInp, #imprintDateInp, #pagesInp, #priceInp, #availabilityInp {
+	margin-top: 5px;
+}
+
+#bookInSeriesInp, #imprintDateInp, #pagesInp {
+	width: 70px;
+}
+
+#priceInp, #availabilityInp {
+	width: 100px;
+}
+
+#bookCoverP, #languageP, #visibleP {
+	width: 100%;
+	min-height: 25px;
+	margin-bottom: 8px;
+}
+
+#bookCoverDiv, #languageDiv, #visibleDiv {
+	float: left;
+	margin: 4px 15px 4px 0;
+}
+
+#bookCoverSel, #languageSel, #visibleSel {
+	width: 100%;
+}
+
+#bookCoverSel select, #languageSel select, #visibleSel select, #bCover, #bLanguage, #bVisible {
+	width: 120px;
+}
+
+textarea {
+	resize: none;
+}
+
+#descriptionP {
+	margin: 8px 0px 8px 0px;
+	line-height: 19px;
+	text-align: justify;
+}
+
+#descriptionText {
+	width: 100%;
+	height: 180px;
+}
+
+#descriptionText:active {
+	outline: none;
+  	box-shadow: 
+    	inset 0 2px 0 rgba(0,0,0,0.2), 
+    	0 0 4px rgba(0,0,0,0.1),
+    	0 0 6px 3px #feb490;
+}
+
+#inFavorite, #inBasket, #changeBtn {
+	margin-bottom: 5px;
+}
+
+#changeBtn {
+	margin-top: 8px;
+}
+
+#bData{
+	margin-top: 25px;
+}
+
+#bData form{
+	/*text-align: center;*/
+	align-items: center;
+}
+
+.labels {
+	float: left;
+	margin-top: 5px;
+	margin-left: 20px; 
+	font-size: 18px;
+	letter-spacing: 2px;
+}
+
+.formTextRed{
+	margin-left: -10px;
+	color: red;
+}
+
+#bData div {
+	margin: auto;
+	width: 500px;
+}
+
+#bNameDiv {
+	padding: 15px 0 15px 0;
+}
+
+#bName, #bSeries, #bInSeries, #bImprintDate, #bPages, #bPrice, #bAvailability {
+	margin-top: 3px;
+	margin-left: 25px;
+}
+
+#bAuthorDiv, #bGenreDiv, #bSeriesDiv, #bInSeriesDiv, #bImprintDateDiv, #bPagesDiv, #bCoverDiv, #bLanguageDiv, #bPriceDiv, #bAvailabilityDiv, 
+#bPictureDiv, #bDescriptionDiv, #bVisibleDiv {
+	padding-bottom: 15px;
+}
+
+#bAuthorDiv label, #bGenreDiv label, #bCoverDiv label, #bLanguageDiv label, #bVisibleDiv label{
+	margin-right: 25px;
+}
+
+ #bPictureDiv #picture{
+ 	margin-left: 25px;
+ }
+
+ #bDescription {
+ 	margin: 5px 5% 0 5%;
+ 	width: 90%;
+ }
+
+ #bBtnDiv {
+ 	padding: 15px 0 15px 0;
+ 	text-align: center;
+
+ }
