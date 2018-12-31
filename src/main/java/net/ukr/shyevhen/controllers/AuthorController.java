@@ -76,7 +76,7 @@ public class AuthorController {
 		if (authorService.existAuthor(author.getName(), author.getSurname(), author.getBirthdayDate())) {
 			return new ResponseEntity<String>(HttpStatus.PRECONDITION_FAILED);
 		}
-		author.setImage(saveImage(author.getImage(), author.getSurname() + author.getName()));
+		author.setImage(saveImage(author.getImage(), checkName(author.getSurname() + author.getName())));
 		authorService.addAuthor(author);
 		return new ResponseEntity<String>(author.getId() + "", HttpStatus.ACCEPTED);
 	}
@@ -100,7 +100,7 @@ public class AuthorController {
 			authorDB.setBiography(author.getBiography());
 		}
 		if (author.getImage() != null) {
-			authorDB.setImage(saveImage(author.getImage(), author.getSurname() + author.getName()));
+			authorDB.setImage(saveImage(author.getImage(), checkName(author.getSurname() + author.getName())));
 		}
 		authorService.changeAuthorData(authorDB);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
@@ -166,5 +166,10 @@ public class AuthorController {
 			System.err.println(e);
 			return "/img/authors/default.png";
 		}
+	}
+	
+	private String checkName(String name) {
+		String regex = "[\\\\/:*?\"<>|]";
+		return name.replaceAll(regex, "");
 	}
 }

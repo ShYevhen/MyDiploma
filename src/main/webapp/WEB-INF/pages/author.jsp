@@ -356,8 +356,8 @@ isELIgnored="false"
 							<div class="authorData">
 								<p id="fioP">
 									<h2><em>${author.name} ${author.surname}</em></h2>
-									<input type="text" class="visibility" id="surnameInp" name="surname" placeholder="Фамилия" >
 									<input type="text" class="visibility" id="nameInp" name="name" placeholder="Имя" >
+									<input type="text" class="visibility" id="surnameInp" name="surname" placeholder="Фамилия" >
 								</p>
 								<p id="birthdayP">
 									<b>Родился:</b> ${author.birthday}

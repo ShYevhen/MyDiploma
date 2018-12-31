@@ -249,6 +249,7 @@
 #genreDiv{
 	float: left;
 	margin: 4px 15px 4px 0;
+	width: calc(100% - 250px);
 }
 
 #genreSel {

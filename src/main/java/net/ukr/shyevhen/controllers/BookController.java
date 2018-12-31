@@ -144,7 +144,7 @@ public class BookController {
 			bookDB.setDescription(book.getDescription());
 		}
 		if (book.getImage() != null) {
-			bookDB.setImage(saveImage(book.getImage(), bookDB.getName() + "." + bookDB.getImprintDate()));
+			bookDB.setImage(saveImage(book.getImage(), checkName(bookDB.getName()) + "." + bookDB.getImprintDate()));
 		}
 	}
 
@@ -166,7 +166,7 @@ public class BookController {
 				book.getBookCover(), book.getLanguage())) {
 			return new ResponseEntity<String>(HttpStatus.PRECONDITION_FAILED);
 		}
-		book.setImage(saveImage(book.getImage(), book.getName() + "." + book.getImprintDate()));
+		book.setImage(saveImage(book.getImage(), checkName(book.getName()) + "." + book.getImprintDate()));
 		book.setGenre(genreService.getGenreByPath(book.getGenre().getPath()));
 		book.setAddDate(new Date());
 		bookService.addBook(book);
@@ -297,6 +297,11 @@ public class BookController {
 	private long countPage(String link, String visible) {
 		long items = bookService.countByGenre("/books/" + link, visible);
 		return (items / pageItems) + ((items % pageItems > 0) ? 1 : 0);
+	}
+	
+	private String checkName(String name) {
+		String regex = "[\\\\/:*?\"<>|]";
+		return name.replaceAll(regex, "");
 	}
 
 	private String saveImage(String baseImg, String book) {

@@ -415,7 +415,7 @@ isELIgnored="false"
 							<label class="labels" for="bookCover"><span class="formTextRed">*</span>Переплет: </label>
 							<select id="bCover" data-placeholder="Переплет" name="bookCover" class="chosen-select">
 								<option value=""></option>
-				                <option value="HARD">жесткий</option>
+				                <option value="HARD">твердый</option>
 				                <option value="SOFT">мягкий</option>
 				            </select>
 						</div>
@@ -511,7 +511,7 @@ isELIgnored="false"
 									</div>
 								</p>
 								<div id="genreP">
-									<div id="genreDiv" >Жанр: ${book.genre.name}</div>
+									<div id="genreDiv" ><p>Жанр: ${book.genre.name}</p></div>
 									<div id="genreSel" class="visibility">
 										<select data-placeholder="Жанр" name="genre" class="chosen-select">
 											<option value=""></option>
@@ -602,14 +602,14 @@ isELIgnored="false"
 			                    <div id="bookCoverP">
 			                    	<div id="bookCoverDiv">Переплет: 
 			                    		<c:choose>
-				                    		<c:when test="${book.bookCover eq 'HARD'}">жесткий</c:when>
+				                    		<c:when test="${book.bookCover eq 'HARD'}">твердый</c:when>
 				                    		<c:otherwise>мягкий</c:otherwise>
 				                    	</c:choose>
 				                    </div>
 			                    	<div id="bookCoverSel" class="visibility">
 				                        <select data-placeholder="Переплет" name="bookCover" class="chosen-select">
 				                        	<option value=""></option>
-				                            <option value="HARD">жесткий</option>
+				                            <option value="HARD">твердый</option>
 				                            <option value="SOFT">мягкий</option>
 				                        </select>
 			                    	</div>
