@@ -38,7 +38,7 @@ public class AppConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
 			JpaVendorAdapter jpaVendorAdapter) {
 		Properties proper = new Properties();
-		proper.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+		proper.setProperty("hibernate.hbm2ddl.auto", "update");
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		emf.setDataSource(dataSource);
 		emf.setJpaVendorAdapter(jpaVendorAdapter);
