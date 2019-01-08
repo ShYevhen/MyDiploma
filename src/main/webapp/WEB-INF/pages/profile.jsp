@@ -34,12 +34,12 @@ isELIgnored="false"
 					<c:if test="${user eq null}">
 						<form class="login-form" action="/login" method="POST">
 							<div class="login-inputs">
-								<input type="text" id="uname" name="user_name" required="required"
+								<input type="text" name="user_name" required="required"
 									pattern="[A-Za-z0-9_-]{4,12}" placeholder="Login">
-								<input type="password" id="upassword" name="user_password" required="required"
+								<input type="password" name="user_password" required="required"
 									pattern="[A-Za-z0-9_-]{6,20}" placeholder="Password">
 							</div>
-							<button type="submit" class="btm" id="btm_login" onclick="return login(this.form)">Войти</button>
+							<button type="submit" class="btm" id="btm_login">Войти</button>
 						</form>
 						<div class="regist_i"><a href="/registration" id="registration">Регистрация</a></div>
 					</c:if>
@@ -564,6 +564,5 @@ isELIgnored="false"
 <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/js/profile.js"></script>
 <script type="text/javascript" src="/js/chosen.jquery.js"></script>
-<script type="text/javascript" src="/js/login.js"></script>
 </body>
 </html>

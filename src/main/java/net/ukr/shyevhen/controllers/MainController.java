@@ -127,6 +127,11 @@ public class MainController {
 		checkLoginAndBasket(cookie, model);
 		return "login";
 	}
+	
+	@PostMapping(value = "/login")
+	public String postLoginPage() {
+		return "login";
+	}
 
 	@GetMapping(value = "/basket")
 	public String getBasket(@CookieValue("JSESSIONID") String cookie, Model model) {

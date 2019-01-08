@@ -144,3 +144,12 @@
 .logDiv input{
 	margin: 5px auto;
 }
+
+#log_btm {
+	margin-bottom: 7px;
+}
+
+#registrations {
+	font-family: "Trebuchet MS", "Lucida Sans";
+	color: #493224;
+}
