@@ -32,12 +32,12 @@
 					<c:if test="${user eq null}">
 						<form class="login-form" action="/login" method="POST">
 							<div class="login-inputs">
-								<input type="text" name="user_name" required="required"
+								<input type="text" id="uname" name="user_name" required="required"
 									pattern="[A-Za-z0-9_-]{4,12}" placeholder="Login">
-								<input type="password" name="user_password"  required="required"
-									pattern="[A-Za-z0-9_-]{6,20}"placeholder="Password">
+								<input type="password" id="upassword" name="user_password" required="required"
+									pattern="[A-Za-z0-9_-]{6,20}" placeholder="Password">
 							</div>
-							<button type="submit" class="btm" id="btm_login">Войти</button>
+							<button type="submit" class="btm" id="btm_login" onclick="return login(this.form)">Войти</button>
 						</form>
 						<div class="regist_i"><a href="/registration" id="registration">Регистрация</a></div>
 					</c:if>
@@ -309,17 +309,17 @@
 			<div id="log">
 				<form class="login-form" action="/login" method="POST">
 					<div class="logDiv">
-						<label for="login">Логин</label>
-						<input type="text" name="user_name" id="login" required="required"
+						<label for="uname">Логин</label>
+						<input type="text" name="user_name" id="uname" required="required"
 						pattern="[A-Za-z0-9_-]{4,12}" />
 					</div>
 					<div class="logDiv">
-						<label for="password">Пароль</label>
-						<input type="password" name="user_password" id="password" required="required"
+						<label for="upassword">Пароль</label>
+						<input type="password" name="user_password" id="upassword" required="required"
 						pattern="[A-Za-z0-9_-]{6,20}" />
 					</div>
 					<div class="submit">
-						<input type="submit" class="btm" id="log_btm" value="Войти" />
+						<input type="submit" class="btm" id="log_btm" value="Войти" onclick="return login(this.form)" />
 					</div>
 					<div>
 						<a href="/registration" id="registrations">Регистрация</a>
@@ -358,5 +358,6 @@
 		</div>
 	</footer>
 	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/js/login.js"></script>
 </body>
 </html>
