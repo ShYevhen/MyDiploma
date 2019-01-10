@@ -50,7 +50,7 @@ public class AppConfig {
 	@Bean
 	public UrlBasedViewResolver setupViewResolver() {
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-		resolver.setPrefix("WEB-INF/pages/");
+		resolver.setPrefix("/WEB-INF/pages/");
 		resolver.setSuffix(".jsp");
 		resolver.setViewClass(JstlView.class);
 		return resolver;
@@ -61,7 +61,7 @@ public class AppConfig {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addResourceHandlers(ResourceHandlerRegistry registry) {
-				registry.addResourceHandler("/**").addResourceLocations("WEB-INF/static/");
+				registry.addResourceHandler("/**").addResourceLocations("/WEB-INF/static/");
 			}
 		};
 	}
