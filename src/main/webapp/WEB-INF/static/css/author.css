@@ -2,7 +2,7 @@ textarea {
 	resize: none;
 }
 
-#changeBtn, #sendBtn, #addBtn {
+#changeBtn, #sendBtn, #addBtn, #file {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7d5d3b), color-stop(1, #634b30));
 	background:-moz-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
 	background:-webkit-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
@@ -25,7 +25,7 @@ textarea {
 	text-decoration:none;
 }
 
-#changeBtn:hover, #sendBtn:hover, #addBtn:hover {
+#changeBtn:hover, #sendBtn:hover, #addBtn:hover, #file:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #634b30), color-stop(1, #7d5d3b));
 	background:-moz-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
 	background:-webkit-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
@@ -36,12 +36,12 @@ textarea {
 	background-color:#634b30;
 }
 
-#changeBtn:active, #sendBtn:active, #addBtn:active {
+#changeBtn:active, #sendBtn:active, #addBtn:active, #file:active {
 	position:relative;
 	top:1px;
 }
 
-#picture, #surnameInp, #nameInp, #birthday, #biographyText {
+#surnameInp, #nameInp, #birthday, #biographyText {
 	background-color: white; 
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
@@ -57,11 +57,11 @@ textarea {
 	text-decoration:none;
 }
 
-#picture:hover, #surnameInp:hover, #nameInp:hover, #birthday:hover, #biographyText:hover {
+#surnameInp:hover, #nameInp:hover, #birthday:hover, #biographyText:hover {
 	background-color:#cfcdcd;
 }
 
-#picture:active, #surnameInp:active, #nameInp:active, #birthday:active, #biographyText:active {
+#surnameInp:active, #nameInp:active, #birthday:active, #biographyText:active {
 	position:relative;
 	top:1px;
 }
@@ -110,10 +110,9 @@ h2{
 	overflow: hidden;
 	height: 260px;
 }
-.image input {
-	width: 200px;
+.image #file {
 	float: none;
-	margin: auto;
+	margin: 5px auto;
 }
 .image {
 	overflow: hidden;
@@ -341,8 +340,8 @@ label {
 	width: 100%;
 }
 
-#pictureDiv input{
-	width: 45%;
+#pictureDiv #file {
+	margin-top: 5px;
 }
 
 #addBtn {

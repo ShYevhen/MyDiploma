@@ -336,7 +336,8 @@ isELIgnored="false"
 						</div>
 						<div id="pictureDiv">
 							<label for="img">Фотография автора: </label>
-							<input type="file" id="picture" class="createAuthor" name="img" accept="image/jpeg,image/png,image/gif" required="required">
+							<button type="button" id="file" class="createAuthor" onclick="$('#picture').click()">Выбрать картинку</button>
+							<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif" required="required">
 						</div>
 						<input type="submit" id="addBtn" class="createAuthor" name="addBtn" value="Сохранить" onclick="return addAuthor(this.form)">
 					</form>
@@ -345,7 +346,8 @@ isELIgnored="false"
 					<form id="authorForm" action="" method="POST" >
 						<div class='image'>
 							<img src="${author.image}" onerror="if (this.src != '/img/authors/default.jpg') this.src = '/img/authors/default.jpg';" alt="${author.name}">
-							<input type="file" id="picture" class="visibility" name="img" accept="image/jpeg,image/png,image/gif">
+							<button type="button" id="file" class="visibility" onclick="$('#picture').click()">Выбрать картинку</button>
+							<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif">
 						</div>
 						<div class="descrip">
 							<c:if test="${role eq 'ROLE_ADMIN' or role eq 'ROLE_OPERATOR'}">

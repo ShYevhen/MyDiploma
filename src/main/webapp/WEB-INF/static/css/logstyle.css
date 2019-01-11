@@ -72,16 +72,22 @@
 	margin-left: 10px;
 }
 
+
 #photoDiv label {
 	margin-left: 10px;
 	margin-top: 5px;
+}
+
+#photoDiv #file {
+	margin-left: -200px;
+	margin-top: 3px;
 }
 
 .formTextRed {
 	color: red;
 }
 
-.submit input {
+.submit input, #file {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7d5d3b), color-stop(1, #634b30));
 	background:-moz-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
 	background:-webkit-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
@@ -104,7 +110,7 @@
 	text-decoration:none;
 }
 
-.submit input:hover {
+.submit input:hover, #file:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #634b30), color-stop(1, #7d5d3b));
 	background:-moz-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
 	background:-webkit-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
@@ -115,7 +121,7 @@
 	background-color:#634b30;
 }
 
-.submit input:active {
+.submit input:active, #file:active {
 	position:relative;
 	top:1px;
 }

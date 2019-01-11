@@ -1,4 +1,4 @@
-#changeBtn, #inFavorite, #inBasket, #changeBtn, #addBtn {
+#changeBtn, #inFavorite, #inBasket, #changeBtn, #addBtn, #file {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7d5d3b), color-stop(1, #634b30));
 	background:-moz-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
 	background:-webkit-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
@@ -21,7 +21,7 @@
 	text-decoration:none;
 }
 
-#changeBtn:hover, #inFavorite:hover, #inBasket:hover, #changeBtn:hover, #addBtn:hover {
+#changeBtn:hover, #inFavorite:hover, #inBasket:hover, #changeBtn:hover, #addBtn:hover, #file:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #634b30), color-stop(1, #7d5d3b));
 	background:-moz-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
 	background:-webkit-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
@@ -32,12 +32,12 @@
 	background-color:#634b30;
 }
 
-#changeBtn:active, #inFavorite:active, #inBasket:active, #changeBtn:active, #addBtn:active {
+#changeBtn:active, #inFavorite:active, #inBasket:active, #changeBtn:active, #addBtn:active, #file:active {
 	position:relative;
 	top:1px;
 }
 
-#picture, #nameInp, #bookSeriesInp, #bookInSeriesInp, #imprintDateInp, #pagesInp, #priceInp, #availabilityInp, #descriptionText,
+#nameInp, #bookSeriesInp, #bookInSeriesInp, #imprintDateInp, #pagesInp, #priceInp, #availabilityInp, #descriptionText,
 #bName, #bSeries, #bInSeries, #bImprintDate, #bPages, #bPrice, #bAvailability, #bDescription {
 	background-color: white; 
 	-moz-border-radius:5px;
@@ -54,13 +54,13 @@
 	text-decoration:none;
 }
 
-#picture:hover, #nameInp:hover, #bookSeriesInp:hover, #bookInSeriesInp:hover, #imprintDateInp:hover, #pagesInp:hover, #priceInp:hover, 
+#nameInp:hover, #bookSeriesInp:hover, #bookInSeriesInp:hover, #imprintDateInp:hover, #pagesInp:hover, #priceInp:hover, 
 #availabilityInp:hover, #descriptionText:hover, #bName:hover, #bSeries:hover, #bInSeries:hover, #bImprintDate:hover, #bPages:hover, 
 #bPrice:hover, #bAvailability:hover, #bDescription:hover {
 	background-color:#cfcdcd;
 }
 
-#picture:active, #nameInp:active, #bookSeriesInp:active, #bookInSeriesInp:active, #imprintDateInp:active, #pagesInp:active, #priceInp:active, 
+#nameInp:active, #bookSeriesInp:active, #bookInSeriesInp:active, #imprintDateInp:active, #pagesInp:active, #priceInp:active, 
 #availabilityInp:active, #descriptionText:active, #bName:active, #bSeries:active, #bInSeries:active, #bImprintDate:active, #bPages:active, 
 #bPrice:active, #bAvailability:active, #bDescription:active {
 	position:relative;
@@ -206,11 +206,8 @@
 #pictureP {
 	position: absolute;
 	margin-top: 320px;
-
-}
-
-#picture {
 	width: 220px;
+	text-align: center;
 }
 
 #nameP {
@@ -371,7 +368,7 @@ textarea {
 	margin-right: 25px;
 }
 
- #bPictureDiv #picture{
+#bPictureDiv #file{
  	margin-left: 25px;
  }
 

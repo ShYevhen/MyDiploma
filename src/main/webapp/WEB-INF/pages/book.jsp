@@ -6,7 +6,7 @@ isELIgnored="false"
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-	<title>${book.name}</title>
+	<title>MyBookShop ${book.name}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/css/chosen.css">
@@ -438,7 +438,8 @@ isELIgnored="false"
 						</div>
 						<div id="bPictureDiv">
 							<label class="labels" for="img"><span class="formTextRed">*</span>Фото книги: </label>
-							<input type="file" id="picture" name="img" accept="image/jpeg,image/png,image/gif" required>
+							<button type="button" id="file" onclick="$('#picture').click()">Выбрать картинку</button>
+							<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif" required>
 						</div>
 						<div id="bDescriptionDiv">
 							<label class="labels" for="description"><span class="formTextRed">*</span>Описание: </label>
@@ -481,7 +482,8 @@ isELIgnored="false"
 							</c:if>
 							<form>
 								<p id="pictureP">
-									<input type="file" id="picture" class="visibility" name="img" accept="image/jpeg,image/png,image/gif">
+									<button type="button" id="file" class="visibility" onclick="$('#picture').click()">Выбрать картинку</button>
+									<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif">
 								</p>
 								<p id="nameP">${book.name}
 									<input type="text" id="nameInp" name="name" class="visibility" placeholder="${book.name}">
