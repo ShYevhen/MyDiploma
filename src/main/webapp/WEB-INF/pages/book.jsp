@@ -438,8 +438,7 @@ isELIgnored="false"
 						</div>
 						<div id="bPictureDiv">
 							<label class="labels" for="img"><span class="formTextRed">*</span>Фото книги: </label>
-							<button type="button" id="file" onclick="$('#picture').click()">Выбрать картинку</button>
-							<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif" required>
+							<input type="url" id="picture" name="img" placeholder="URL картинки" required>
 						</div>
 						<div id="bDescriptionDiv">
 							<label class="labels" for="description"><span class="formTextRed">*</span>Описание: </label>
@@ -482,8 +481,9 @@ isELIgnored="false"
 							</c:if>
 							<form>
 								<p id="pictureP">
-									<button type="button" id="file" class="visibility" onclick="$('#picture').click()">Выбрать картинку</button>
-									<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif">
+									<!-- <button type="button" id="file" class="visibility" onclick="$('#picture').click()">Выбрать картинку</button>
+									<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif"> -->
+									<input type="url" id="picture" name="img" class="visibility" placeholder="URL картинки">
 								</p>
 								<p id="nameP">${book.name}
 									<input type="text" id="nameInp" name="name" class="visibility" placeholder="${book.name}">

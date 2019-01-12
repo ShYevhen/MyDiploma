@@ -1,11 +1,11 @@
 package net.ukr.shyevhen.controllers;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+//import java.io.File;
+//import java.io.FileOutputStream;
+//import java.io.IOException;
+//import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Base64;
+//import java.util.Base64;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -91,36 +91,37 @@ public class MainController {
 		}
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		sUser.setPassword(encoder.encode(sUser.getPassword()));
-		String baseImg = sUser.getImage();
-		if (baseImg != null) {
-			saveImage(baseImg, sUser);
-		}
+//		String baseImg = sUser.getImage();
+//		if (baseImg != null) {
+//			saveImage(baseImg, sUser);
+//			
+//		}
 		sUser.setRole(Role.USER);
 		userService.addUser(sUser);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 	}
 	
-	private void saveImage(String baseImg, ShopUser sUser) {
-		String format = "";
-		if (baseImg.contains("image/jpeg")) {
-			format = ".jpg";
-		} else if (baseImg.contains("image/png")) {
-			format = ".png";
-		} else if (baseImg.contains("image/gif")) {
-			format = ".gif";
-		}
-		baseImg = baseImg.substring(baseImg.indexOf(",") + 1);
-		String imgRef = "src/main/webapp/WEB-INF/static/img/users/" + sUser.getLogin() + format;
-		byte[] buf = Base64.getDecoder().decode(baseImg);
-		File img = new File(imgRef);
-		try (OutputStream os = new FileOutputStream(img)) {
-			os.write(buf);
-			sUser.setImage(imgRef.substring(imgRef.indexOf("/img")));
-		} catch (IOException e) {
-			System.err.println(e);
-			sUser.setImage("/img/users/default.png");
-		}
-	}
+//	private void saveImage(String baseImg, ShopUser sUser) {
+//		String format = "";
+//		if (baseImg.contains("image/jpeg")) {
+//			format = ".jpg";
+//		} else if (baseImg.contains("image/png")) {
+//			format = ".png";
+//		} else if (baseImg.contains("image/gif")) {
+//			format = ".gif";
+//		}
+//		baseImg = baseImg.substring(baseImg.indexOf(",") + 1);
+//		String imgRef = "src/main/webapp/WEB-INF/static/img/users/" + sUser.getLogin() + format;
+//		byte[] buf = Base64.getDecoder().decode(baseImg);
+//		File img = new File(imgRef);
+//		try (OutputStream os = new FileOutputStream(img)) {
+//			os.write(buf);
+//			sUser.setImage(imgRef.substring(imgRef.indexOf("/img")));
+//		} catch (IOException e) {
+//			System.err.println(e);
+//			sUser.setImage("/img/users/default.png");
+//		}
+//	}
 
 	@GetMapping(value = "/login")
 	public String getLoginPage(@CookieValue("JSESSIONID") String cookie, Model model) {

@@ -1,29 +1,29 @@
-var image = "";
-File.prototype.convertToBase64 = function(callback){
-	var reader = new FileReader();
-	reader.onloadend = function (e) {
-		callback(e.target.result, e.target.error);
-	};   
-	reader.readAsDataURL(this);
-};
+// var image = "";
+// File.prototype.convertToBase64 = function(callback){
+// 	var reader = new FileReader();
+// 	reader.onloadend = function (e) {
+// 		callback(e.target.result, e.target.error);
+// 	};   
+// 	reader.readAsDataURL(this);
+// };
 
-$("#picture").on('change',function(){
-	var selectedFile = this.files[0];
-	selectedFile.convertToBase64(function(base64){
-		image = base64;
-	}) 
-	$this = $(this);
-	if($this.val().length == 0) {
-		$('#file').text("Выбрать картинку");
-	}else{
-		var fileName = $this.val();
-		fileName = fileName.substring(fileName.lastIndexOf("\\") + 1, fileName.length);
-		if(fileName.length>19){
-			fileName = fileName.substring(0, 17) + "...";
-		}
-		$('#file').text(fileName);
-	}
-});
+// $("#picture").on('change',function(){
+// 	var selectedFile = this.files[0];
+// 	selectedFile.convertToBase64(function(base64){
+// 		image = base64;
+// 	}) 
+// 	$this = $(this);
+// 	if($this.val().length == 0) {
+// 		$('#file').text("Выбрать картинку");
+// 	}else{
+// 		var fileName = $this.val();
+// 		fileName = fileName.substring(fileName.lastIndexOf("\\") + 1, fileName.length);
+// 		if(fileName.length>19){
+// 			fileName = fileName.substring(0, 17) + "...";
+// 		}
+// 		$('#file').text(fileName);
+// 	}
+// });
 
 
 function sendRegData(f) {
@@ -42,8 +42,8 @@ function sendRegData(f) {
 	if(f.surname.value != ""){
 		jsonForm += ",\"surname\":\""+f.surname.value+"\"";
 	}
-	if(image != ""){
-		jsonForm += ",\"image\":\""+image+"\"";
+	if(f.picture.value != ""){
+		jsonForm += ",\"image\":\""+f.picture.value+"\"";
 	}
 	jsonForm += "}";
 

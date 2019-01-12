@@ -103,8 +103,7 @@ isELIgnored="false"
 					<form action="" method="POST">
 					<div class='profImage'>
 						<img src="${profile.image}" onerror="if (this.src != '/img/users/default.png') this.src = '/img/users/default.png';" alt="${profile.login}">
-						<button type="button" id="file" onclick="$('#picture').click()">Выбрать картинку</button>
-						<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif">
+						<input type="url" id="picture" name="img" placeholder="URL картинки">
 					</div>
 					<div class='description'>
 							<div class="profDesc" id="profLogin">Логин: ${profile.login}</div>

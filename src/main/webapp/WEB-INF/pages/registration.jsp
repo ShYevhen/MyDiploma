@@ -341,8 +341,7 @@
 				</div>
 				<div id="photoDiv" class="regDiv">
 					<label for="image">Фото:</label>
-					<button type="button" id="file" onclick="$('#picture').click()">Выбрать картинку</button>
-					<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif">
+					<input type="url" id="picture" name="img" placeholder="URL картинки">
 				</div>
 				<div id="checkbox">
 					<input type="checkbox" name="confirm" id="confirm" onclick="boxForm(this.form)" disabled="disabled"/>

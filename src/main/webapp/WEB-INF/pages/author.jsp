@@ -336,8 +336,7 @@ isELIgnored="false"
 						</div>
 						<div id="pictureDiv">
 							<label for="img">Фотография автора: </label>
-							<button type="button" id="file" class="createAuthor" onclick="$('#picture').click()">Выбрать картинку</button>
-							<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif" required="required">
+							<input type="url" id="picture" name="img" placeholder="URL картинки" required="required">
 						</div>
 						<input type="submit" id="addBtn" class="createAuthor" name="addBtn" value="Сохранить" onclick="return addAuthor(this.form)">
 					</form>
@@ -345,9 +344,8 @@ isELIgnored="false"
 				<c:otherwise>
 					<form id="authorForm" action="" method="POST" >
 						<div class='image'>
-							<img src="${author.image}" alt="${author.name}">
-							<button type="button" id="file" class="visibility" onclick="$('#picture').click()">Выбрать картинку</button>
-							<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif">
+							<img src="${author.image}" alt="${author.name} ${author.surname}">
+							<input type="url" id="picture" class="visibility" name="img" placeholder="URL картинки">
 						</div>
 						<div class="descrip">
 							<c:if test="${role eq 'ROLE_ADMIN' or role eq 'ROLE_OPERATOR'}">

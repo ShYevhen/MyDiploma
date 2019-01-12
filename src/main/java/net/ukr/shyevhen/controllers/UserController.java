@@ -1,12 +1,12 @@
 package net.ukr.shyevhen.controllers;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+//import java.io.File;
+//import java.io.FileOutputStream;
+//import java.io.IOException;
+//import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Base64;
+//import java.util.Base64;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -84,7 +84,7 @@ public class UserController {
 			sUser.seteMail(userSh.geteMail());
 		}
 		if (!userSh.getImage().equals("null")) {
-			sUser.setImage(saveImage(userSh.getImage(), login));
+			sUser.setImage(userSh.getImage());
 		}
 		userService.changeUserData(sUser);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
@@ -378,27 +378,27 @@ public class UserController {
 		};
 	}
 
-	private String saveImage(String baseImg, String login) {
-		String format = "";
-		if (baseImg.contains("image/jpeg")) {
-			format = ".jpg";
-		} else if (baseImg.contains("image/png")) {
-			format = ".png";
-		} else if (baseImg.contains("image/gif")) {
-			format = ".gif";
-		}
-		baseImg = baseImg.substring(baseImg.indexOf(",") + 1);
-		String imgRef = "src/main/webapp/WEB-INF/static/img/users/" + login + format;
-		byte[] buf = Base64.getDecoder().decode(baseImg);
-		File img = new File(imgRef);
-		try (OutputStream os = new FileOutputStream(img)) {
-			os.write(buf);
-			return imgRef.substring(imgRef.indexOf("/img"));
-		} catch (IOException e) {
-			System.err.println(e);
-			return "/img/users/default.png";
-		}
-	}
+//	private String saveImage(String baseImg, String login) {
+//		String format = "";
+//		if (baseImg.contains("image/jpeg")) {
+//			format = ".jpg";
+//		} else if (baseImg.contains("image/png")) {
+//			format = ".png";
+//		} else if (baseImg.contains("image/gif")) {
+//			format = ".gif";
+//		}
+//		baseImg = baseImg.substring(baseImg.indexOf(",") + 1);
+//		String imgRef = "src/main/webapp/WEB-INF/static/img/users/" + login + format;
+//		byte[] buf = Base64.getDecoder().decode(baseImg);
+//		File img = new File(imgRef);
+//		try (OutputStream os = new FileOutputStream(img)) {
+//			os.write(buf);
+//			return imgRef.substring(imgRef.indexOf("/img"));
+//		} catch (IOException e) {
+//			System.err.println(e);
+//			return "/img/users/default.png";
+//		}
+//	}
 
 	private void changeOrderCost(Order order) {
 		BigDecimal delivery = order.getDeliveryPrice();

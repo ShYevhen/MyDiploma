@@ -1,11 +1,11 @@
 package net.ukr.shyevhen.controllers;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+//import java.io.File;
+//import java.io.FileOutputStream;
+//import java.io.IOException;
+//import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Base64;
+//import java.util.Base64;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -144,7 +144,7 @@ public class BookController {
 			bookDB.setDescription(book.getDescription());
 		}
 		if (book.getImage() != null) {
-			bookDB.setImage(saveImage(book.getImage(), checkName(bookDB.getName()) + "." + bookDB.getImprintDate()));
+			bookDB.setImage(book.getImage());
 		}
 	}
 
@@ -166,7 +166,7 @@ public class BookController {
 				book.getBookCover(), book.getLanguage())) {
 			return new ResponseEntity<String>(HttpStatus.PRECONDITION_FAILED);
 		}
-		book.setImage(saveImage(book.getImage(), checkName(book.getName()) + "." + book.getImprintDate()));
+//		book.setImage(saveImage(book.getImage(), checkName(book.getName()) + "." + book.getImprintDate()));
 		book.setGenre(genreService.getGenreByPath(book.getGenre().getPath()));
 		book.setAddDate(new Date());
 		bookService.addBook(book);
@@ -299,32 +299,32 @@ public class BookController {
 		return (items / pageItems) + ((items % pageItems > 0) ? 1 : 0);
 	}
 	
-	private String checkName(String name) {
-		String regex = "[\\\\/:*?\"<>|]";
-		return name.replaceAll(regex, "");
-	}
+//	private String checkName(String name) {
+//		String regex = "[\\\\/:*?\"<>|]";
+//		return name.replaceAll(regex, "");
+//	}
 
-	private String saveImage(String baseImg, String book) {
-		String format = "";
-		if (baseImg.contains("image/jpeg")) {
-			format = ".jpg";
-		} else if (baseImg.contains("image/png")) {
-			format = ".png";
-		} else if (baseImg.contains("image/gif")) {
-			format = ".gif";
-		}
-		baseImg = baseImg.substring(baseImg.indexOf(",") + 1);
-		String imgRef = "src/main/webapp/WEB-INF/static/img/books/" + book + format;
-		byte[] buf = Base64.getDecoder().decode(baseImg);
-		File img = new File(imgRef);
-		try (OutputStream os = new FileOutputStream(img)) {
-			os.write(buf);
-			return imgRef.substring(imgRef.indexOf("/img"));
-		} catch (IOException e) {
-			System.err.println(e);
-			return "/img/books/default.png";
-		}
-	}
+//	private String saveImage(String baseImg, String book) {
+//		String format = "";
+//		if (baseImg.contains("image/jpeg")) {
+//			format = ".jpg";
+//		} else if (baseImg.contains("image/png")) {
+//			format = ".png";
+//		} else if (baseImg.contains("image/gif")) {
+//			format = ".gif";
+//		}
+//		baseImg = baseImg.substring(baseImg.indexOf(",") + 1);
+//		String imgRef = "src/main/webapp/WEB-INF/static/img/books/" + book + format;
+//		byte[] buf = Base64.getDecoder().decode(baseImg);
+//		File img = new File(imgRef);
+//		try (OutputStream os = new FileOutputStream(img)) {
+//			os.write(buf);
+//			return imgRef.substring(imgRef.indexOf("/img"));
+//		} catch (IOException e) {
+//			System.err.println(e);
+//			return "/img/books/default.png";
+//		}
+//	}
 
 	private void addGenres(Model model) {
 		List<Genre> genres = genreService.findGenreByPathExept("/books/business-economics-legal");

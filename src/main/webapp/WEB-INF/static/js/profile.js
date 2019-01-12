@@ -1,29 +1,29 @@
-var image = "";
-File.prototype.convertToBase64 = function(callback){
-	var reader = new FileReader();
-	reader.onloadend = function (e) {
-		callback(e.target.result, e.target.error);
-	};   
-	reader.readAsDataURL(this);
-};
+// var image = "";
+// File.prototype.convertToBase64 = function(callback){
+// 	var reader = new FileReader();
+// 	reader.onloadend = function (e) {
+// 		callback(e.target.result, e.target.error);
+// 	};   
+// 	reader.readAsDataURL(this);
+// };
 
-$("#picture").on('change',function(){
-	var selectedFile = this.files[0];
-	selectedFile.convertToBase64(function(base64){
-		image = base64;
-	});
-	$this = $(this);
-	if($this.val().length == 0) {
-        $('#file').text("Выбрать картинку");
-    }else{
-    	var fileName = $this.val();
-    	fileName = fileName.substring(fileName.lastIndexOf("\\") + 1, fileName.length);
-        if(fileName.length>19){
-        	fileName = fileName.substring(0, 17) + "...";
-        }
-        $('#file').text(fileName);
-    }
-});
+// $("#picture").on('change',function(){
+// 	var selectedFile = this.files[0];
+// 	selectedFile.convertToBase64(function(base64){
+// 		image = base64;
+// 	});
+// 	$this = $(this);
+// 	if($this.val().length == 0) {
+//         $('#file').text("Выбрать картинку");
+//     }else{
+//     	var fileName = $this.val();
+//     	fileName = fileName.substring(fileName.lastIndexOf("\\") + 1, fileName.length);
+//         if(fileName.length>19){
+//         	fileName = fileName.substring(0, 17) + "...";
+//         }
+//         $('#file').text(fileName);
+//     }
+// });
 
 function checkPass(f) {
 	if (f.password.value != "" && f.r_password.value != "" && f.password.value != f.r_password.value) {
@@ -50,64 +50,63 @@ function checkPassword(f) {
 
 function sendChangeData(f) {
 	if(f.name.value == "" && f.surname.value == "" && f.password.value == "" && f.eMail.value == "" &&
-		f.phone.value == "" && image == ""){
+		f.phone.value == "" && f.picture.value == ""){
 		alert("Для изменения данных введите новое значение в соответствующее поле.");
 	return false;
-};
-if(f.r_password.value == "" && f.password.value != "" ){
-	alert("Повторите новый пароль!");
+	};
+	if(f.r_password.value == "" && f.password.value != "" ){
+		alert("Повторите новый пароль!");
+		return false;
+	};
+	var jsonForm = "{";
+	jsonForm += "\"login\":\""+f.old_password.value+"\"";
+	if(f.password.value != ""){
+		jsonForm += ",\"password\":\""+f.password.value+"\"";
+	}else{
+		jsonForm += ",\"password\":\""+null+"\"";
+	}
+	if(f.eMail.value != ""){
+		jsonForm += ",\"eMail\":\""+f.eMail.value+"\"";
+	}else{
+		jsonForm += ",\"eMail\":\""+null+"\"";
+	}
+	if(f.phone.value != ""){
+		jsonForm += ",\"phone\":\""+f.phone.value+"\"";
+	}else{
+		jsonForm += ",\"phone\":\""+null+"\"";
+	}
+	if(f.name.value != ""){
+		jsonForm += ",\"name\":\""+f.name.value+"\"";
+	}else{
+		jsonForm += ",\"name\":\""+null+"\"";
+	}
+	if(f.surname.value != ""){
+		jsonForm += ",\"surname\":\""+f.surname.value+"\"";
+	}else{
+		jsonForm += ",\"surname\":\""+null+"\"";
+	}
+	if(f.picture.value != ""){
+		jsonForm += ",\"image\":\""+f.picture.value+"\"";
+	}else{
+		jsonForm += ",\"image\":\""+null+"\"";
+	}
+	jsonForm += "}";
+
+	$.ajax({
+		type: "POST",
+		url: "/profile/user",
+		data: jsonForm,
+		complete: function(d){
+			if (d.status == 202) {
+				window.location.reload();
+			} else if (d.status == 412) {
+				alert("Неправильный пароль!");
+			}
+		},
+		dataType: "json",
+		contentType : "application/json"
+	});
 	return false;
-};
-var jsonForm = "{";
-jsonForm += "\"login\":\""+f.old_password.value+"\"";
-if(f.password.value != ""){
-	jsonForm += ",\"password\":\""+f.password.value+"\"";
-}else{
-	jsonForm += ",\"password\":\""+null+"\"";
-}
-if(f.eMail.value != ""){
-	jsonForm += ",\"eMail\":\""+f.eMail.value+"\"";
-}else{
-	jsonForm += ",\"eMail\":\""+null+"\"";
-}
-if(f.phone.value != ""){
-	jsonForm += ",\"phone\":\""+f.phone.value+"\"";
-}else{
-	jsonForm += ",\"phone\":\""+null+"\"";
-}
-if(f.name.value != ""){
-	jsonForm += ",\"name\":\""+f.name.value+"\"";
-}else{
-	jsonForm += ",\"name\":\""+null+"\"";
-}
-if(f.surname.value != ""){
-	jsonForm += ",\"surname\":\""+f.surname.value+"\"";
-}else{
-	jsonForm += ",\"surname\":\""+null+"\"";
-}
-if(image != ""){
-	jsonForm += ",\"image\":\""+image+"\"";
-}else{
-	jsonForm += ",\"image\":\""+null+"\"";
-}
-jsonForm += "}";
-
-
-$.ajax({
-	type: "POST",
-	url: "/profile/user",
-	data: jsonForm,
-	complete: function(d){
-		if (d.status == 202) {
-			window.location.reload();
-		} else if (d.status == 412) {
-			alert("Неправильный пароль!");
-		}
-	},
-	dataType: "json",
-	contentType : "application/json"
-});
-return false;
 }
 
 function addToBasket(f){

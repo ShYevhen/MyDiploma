@@ -1,10 +1,10 @@
 package net.ukr.shyevhen.controllers;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Base64;
+//import java.io.File;
+//import java.io.FileOutputStream;
+//import java.io.IOException;
+//import java.io.OutputStream;
+//import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +76,6 @@ public class AuthorController {
 		if (authorService.existAuthor(author.getName(), author.getSurname(), author.getBirthdayDate())) {
 			return new ResponseEntity<String>(HttpStatus.PRECONDITION_FAILED);
 		}
-		author.setImage(saveImage(author.getImage(), checkName(author.getSurname() + author.getName())));
 		authorService.addAuthor(author);
 		return new ResponseEntity<String>(author.getId() + "", HttpStatus.ACCEPTED);
 	}
@@ -100,7 +99,7 @@ public class AuthorController {
 			authorDB.setBiography(author.getBiography());
 		}
 		if (author.getImage() != null) {
-			authorDB.setImage(saveImage(author.getImage(), checkName(authorDB.getSurname() + authorDB.getName())));
+			authorDB.setImage(author.getImage());
 		}
 		authorService.changeAuthorData(authorDB);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
@@ -146,30 +145,30 @@ public class AuthorController {
 
 	}
 
-	private String saveImage(String baseImg, String author) {
-		String format = "";
-		if (baseImg.contains("image/jpeg")) {
-			format = ".jpg";
-		} else if (baseImg.contains("image/png")) {
-			format = ".png";
-		} else if (baseImg.contains("image/gif")) {
-			format = ".gif";
-		}
-		baseImg = baseImg.substring(baseImg.indexOf(",") + 1);
-		String imgRef = "src/main/webapp/WEB-INF/static/img/authors/" + author + format;
-		byte[] buf = Base64.getDecoder().decode(baseImg);
-		File img = new File(imgRef);
-		try (OutputStream os = new FileOutputStream(img)) {
-			os.write(buf);
-			return imgRef.substring(imgRef.indexOf("/img"));
-		} catch (IOException e) {
-			System.err.println(e);
-			return "/img/authors/default.png";
-		}
-	}
+//	private String saveImage(String baseImg, String author) {
+//		String format = "";
+//		if (baseImg.contains("image/jpeg")) {
+//			format = ".jpg";
+//		} else if (baseImg.contains("image/png")) {
+//			format = ".png";
+//		} else if (baseImg.contains("image/gif")) {
+//			format = ".gif";
+//		}
+//		baseImg = baseImg.substring(baseImg.indexOf(",") + 1);
+//		String imgRef = "src/main/webapp/WEB-INF/static/img/authors/" + author + format;
+//		byte[] buf = Base64.getDecoder().decode(baseImg);
+//		File img = new File(imgRef);
+//		try (OutputStream os = new FileOutputStream(img)) {
+//			os.write(buf);
+//			return imgRef.substring(imgRef.indexOf("/img"));
+//		} catch (IOException e) {
+//			System.err.println(e);
+//			return "/img/authors/default.png";
+//		}
+//	}
 	
-	private String checkName(String name) {
-		String regex = "[\\\\/:*?\"<>|]";
-		return name.replaceAll(regex, "");
-	}
+//	private String checkName(String name) {
+//		String regex = "[\\\\/:*?\"<>|]";
+//		return name.replaceAll(regex, "");
+//	}
 }
