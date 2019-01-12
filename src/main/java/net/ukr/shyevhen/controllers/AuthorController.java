@@ -100,7 +100,7 @@ public class AuthorController {
 			authorDB.setBiography(author.getBiography());
 		}
 		if (author.getImage() != null) {
-			authorDB.setImage(saveImage(author.getImage(), checkName(author.getSurname() + author.getName())));
+			authorDB.setImage(saveImage(author.getImage(), checkName(authorDB.getSurname() + authorDB.getName())));
 		}
 		authorService.changeAuthorData(authorDB);
 		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
