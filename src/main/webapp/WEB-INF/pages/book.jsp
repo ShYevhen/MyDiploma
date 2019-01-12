@@ -472,7 +472,7 @@ isELIgnored="false"
 				<div class="data">
 					<div class="theBook">
 						<div class="image">
-							<img src="${book.image}" alt="${book.name}">
+							<img src="${book.image}" onerror="if (this.src != '/img/users/default.png') this.src = '/img/users/default.png';" alt="${book.name}">
 						</div>
 						<div class='description'>
 							<c:if test="${role eq 'ROLE_ADMIN' or role eq 'ROLE_OPERATOR'}">

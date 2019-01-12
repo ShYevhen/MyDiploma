@@ -345,7 +345,7 @@ isELIgnored="false"
 				<c:otherwise>
 					<form id="authorForm" action="" method="POST" >
 						<div class='image'>
-							<img src="${author.image}" onerror="if (this.src != '/img/authors/default.jpg') this.src = '/img/authors/default.jpg';" alt="${author.name}">
+							<img src="${author.image}" onerror="if (this.src != '/img/users/default.png') this.src = '/img/users/default.png';" alt="${author.name}">
 							<button type="button" id="file" class="visibility" onclick="$('#picture').click()">Выбрать картинку</button>
 							<input type="file" id="picture" name="img" style="display: none;" accept="image/jpeg,image/png,image/gif">
 						</div>
