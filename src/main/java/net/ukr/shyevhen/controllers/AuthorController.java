@@ -156,7 +156,7 @@ public class AuthorController {
 			format = ".gif";
 		}
 		baseImg = baseImg.substring(baseImg.indexOf(",") + 1);
-		String imgRef = "/WEB-INF/static/img/authors/" + author + format;
+		String imgRef = "src/main/webapp/WEB-INF/static/img/authors/" + author + format;
 		byte[] buf = Base64.getDecoder().decode(baseImg);
 		File img = new File(imgRef);
 		try (OutputStream os = new FileOutputStream(img)) {
