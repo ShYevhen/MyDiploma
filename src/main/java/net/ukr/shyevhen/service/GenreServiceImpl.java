@@ -45,11 +45,13 @@ public class GenreServiceImpl implements GenreService {
 	}
 
 	@Override
+	@Transactional
 	public List<Genre> findGenreByPathExept(String path) {
 		return genreRepository.findAllByPathExept(path, path);
 	}
 
 	@Override
+	@Transactional
 	public List<Genre> findGenreByPathExepts(String path, String exept) {
 		return genreRepository.findAllByPathExepts(path, exept, path);
 	}
@@ -61,6 +63,7 @@ public class GenreServiceImpl implements GenreService {
 	}
 
 	@Override
+	@Transactional
 	public long countGenres() {
 		return genreRepository.count();
 	}

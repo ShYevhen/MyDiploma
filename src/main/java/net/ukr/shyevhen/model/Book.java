@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "Books")
 public class Book {
@@ -25,6 +27,7 @@ public class Book {
 	private BookCover bookCover;
 	private String language;
 	@Lob
+	@Type(type = "text")
 	private String description;
 	private BigDecimal price;
 	private int availability;

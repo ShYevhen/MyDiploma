@@ -36,16 +36,19 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public int countAuthors() {
 		return authorRepository.countAuthors();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public int countAuthors(String letter) {
 		return authorRepository.countAuthorsByLetter(letter);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Author> getAuthorsByLetter(String letter, Pageable pageable) {
 		return authorRepository.findAllBySurnameLetter(letter, pageable);
 	}

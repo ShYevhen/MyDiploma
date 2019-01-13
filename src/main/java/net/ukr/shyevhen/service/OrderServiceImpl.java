@@ -42,6 +42,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	@Transactional
 	public List<Order> findByUserLogin(String login) {
 		return orderRepository.findByUserLogin(login);
 	}
@@ -96,11 +97,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	@Transactional
 	public int countOrders() {
 		return orderRepository.countOrders();
 	}
 
 	@Override
+	@Transactional
 	public int countOrders(String login) {
 		return orderRepository.countOrdersByUser(login);
 	}

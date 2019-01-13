@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "Authors")
 public class Author {
@@ -20,6 +22,7 @@ public class Author {
 	private String surname;
 	private Date birthday;
 	@Lob
+	@Type(type = "text")
 	private String biography;
 	private String image;
 
