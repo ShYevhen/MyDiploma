@@ -227,7 +227,7 @@ public class MainController {
 					&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
 					&& !(SecurityContextHolder.getContext()
 							.getAuthentication() instanceof AnonymousAuthenticationToken)) {
-				chooseSession(order, session, cookie);
+				session = chooseSession(order, cookie);
 			} else {
 				session = cookie;
 			}
@@ -241,21 +241,24 @@ public class MainController {
 			}
 			order.setCreateDate(new Date());
 			orderService.addOrder(order);
+			System.out.println();
+			System.out.println("basket session =" + session);
+			System.out.println();
 			basketService.deleteBySession(session);
 			return new ResponseEntity<String>(HttpStatus.ACCEPTED);
 		}
 		return new ResponseEntity<String>(HttpStatus.PRECONDITION_FAILED);
 	}
 	
-	private void chooseSession(Order order, String session, String cookie) {
+	private String chooseSession(Order order, String cookie) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String login = user.getUsername();
 		ShopUser sUser = userService.getIdAndRoleByLogin(login);
 		if (sUser != null) {
 			order.setUser(sUser);
-			session = login;
+			return login;
 		} else {
-			session = cookie;
+			return cookie;
 		}
 	}
 
